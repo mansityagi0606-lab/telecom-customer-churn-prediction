@@ -1,0 +1,36 @@
+# Virtual environments
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Notebooks & experiments
+notebooks/
+.ipynb_checkpoints/
+
+# Logs
+logs/
+*.log
+
+# Git files
+.git/
+.gitignore
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Large / unnecessary files
+*.csv
+*.xlsx
+
+# Optional: exclude if not needed in app
+output_*.png
