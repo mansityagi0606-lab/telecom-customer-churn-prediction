@@ -1,132 +1,96 @@
-# Telecom Customer Churn Prediction
+# Customer Churn Prediction
 
-## Live Demo
-
- http://13.206.196.255:8501
-
----
+An end-to-end machine learning project that predicts customer churn using classification models, model evaluation, and hyperparameter tuning, with an interactive Streamlit application deployed on AWS EC2.
 
 ## Project Overview
 
-Customer churn is a critical challenge in the telecommunications industry. This project leverages machine learning to predict whether a customer is likely to churn and provides actionable insights to support retention strategies.
-
----
-
-## Problem Statement
-
-The goal is to build a predictive model that identifies customers at risk of churn, enabling proactive business decisions to reduce customer attrition.
-
----
-
-## Dataset
-
-* **Source:** IBM Telco Customer Churn Dataset
-* **Size:** ~7,000 customers
-* **Target Variable:** `Churn` (Yes/No)
-
-### Features Include:
-
-* Customer tenure
-* Contract type
-* Monthly charges
-* Internet services
-* Support services
-* Payment methods
-
----
-
-## Models Implemented
-
-* Logistic Regression (Baseline)
-* Random Forest Classifier
-* Tuned Random Forest (GridSearchCV)
-
----
-
-## Model Performance
-
-* **ROC-AUC:** ~0.75+
-* Improved performance after hyperparameter tuning
-* Balanced precision and recall
-
----
-
-## Key Insights
-
-* Month-to-month contracts have higher churn rates
-* Customers with short tenure are more likely to churn
-* Higher monthly charges increase churn probability
-* Lack of TechSupport and OnlineSecurity correlates with higher churn
-
----
-
-## Application
-
-An interactive **Streamlit web app** allows users to input customer details and get real-time churn predictions.
-
----
-
-## Docker Deployment
-
-### Build Docker Image
-
-```bash
-docker build -t churn-app .
-```
-
-### Run Container
-
-```bash
-docker run -p 8501:8501 churn-app
-```
-
-Access locally:
-
-```
-http://localhost:8501
-```
-
----
-
-## AWS Deployment (EC2)
-
-The application is deployed on an AWS EC2 instance using Docker.
-
-### Steps:
-
-1. Launch EC2 instance (Ubuntu)
-2. Install Docker
-3. Transfer project files
-4. Build Docker image
-5. Run container on port 8501
-
-Access live app:
-http://13.206.196.255:8501
-
----
-
-## Project Structure
-
-```
-customer-churn/
-│
-├── app.py
-├── Dockerfile
-├── requirements.txt
-├── artifacts/
-│   ├── model.pkl
-│   └── preprocessor.pkl
-```
+Customer churn prediction helps businesses identify customers who may leave and develop proactive retention strategies. This project explores customer data, trains machine learning models, and evaluates their ability to identify customers at risk of churn.
 
 ## Tech Stack
 
-* Python
-* Scikit-learn
-* Pandas
-* Streamlit
-* Docker
-* AWS EC2
+- **Language:** Python
+- **Data Analysis:** Pandas, NumPy
+- **Visualization:** Matplotlib, Seaborn
+- **Machine Learning:** Scikit-learn
+- **Web Application:** Streamlit
+- **Deployment:** Docker, AWS EC2
 
+## Machine Learning Workflow
 
+1. **Exploratory Data Analysis:** Analyzed customer characteristics, churn distribution, and relationships between features and customer exits.
+2. **Data Preprocessing:** Removed irrelevant identifier columns, encoded categorical variables, and separated features from the target.
+3. **Model Training:** Implemented Logistic Regression and Random Forest classifiers.
+4. **Model Evaluation:** Compared precision, recall, F1-score, accuracy, and ROC-AUC.
+5. **Hyperparameter Tuning:** Used GridSearchCV with five-fold cross-validation to optimize Random Forest parameters.
+6. **Deployment:** Packaged the application using Docker and deployed it on AWS EC2 for interactive predictions.
 
+## Model Performance
+
+| Model | Accuracy | ROC-AUC |
+|---|---:|---:|
+| Balanced Logistic Regression | 70% | 0.7663 |
+| Random Forest | 86% | 0.8522 |
+
+*Metrics are from the notebook's held-out test set. The tuned Random Forest requires a complete, consistent evaluation before its performance can be reported.*
+
+## Key Findings
+
+- Customer age was the most important feature in the initial Random Forest model.
+- Inactive members showed a higher observed churn rate than active members.
+- Customers who exited had higher average account balances in the analyzed dataset.
+- Class imbalance made recall and precision important alongside accuracy.
+
+## Run Locally
+
+**1. Clone the repository**
+
+```bash
+git clone <YOUR_REPOSITORY_URL>
+cd <YOUR_PROJECT_DIRECTORY>
+```
+
+**2. Install dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+**3. Run the Streamlit application**
+
+```bash
+streamlit run app.py
+```
+
+Open `http://localhost:8501` in your browser.
+
+## Docker Deployment
+
+Build and run the application using Docker:
+
+```bash
+docker build -t churn-app .
+docker run -p 8501:8501 churn-app
+```
+
+## Project Structure
+
+```text
+customer-churn/
+├── app.py
+├── Dockerfile
+├── requirements.txt
+├── Customer_Churn_Project.ipynb
+└── artifacts/
+    ├── model.pkl
+    └── preprocessor.pkl
+```
+
+## Future Improvements
+
+- Improve churn recall through class balancing and threshold optimization.
+- Build a consistent preprocessing and prediction pipeline.
+- Add explainability using SHAP or permutation importance.
+- Monitor model performance and prediction quality after deployment.
+
+---
 
